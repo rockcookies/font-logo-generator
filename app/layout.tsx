@@ -1,9 +1,10 @@
-import { Geist, Geist_Mono } from 'next/font/google'
-import './globals.css'
 import { Toaster } from '@/core/ui/sonner'
-import Script from 'next/script'
 import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import Script from 'next/script'
+import { AsyncErrorProvider } from './_component/AsyncErrorProvider'
 import { ThemeProvider } from './_component/Theme'
+import './globals.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -16,9 +17,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Google Font to SVG Path Converter | Online Font Vector Generator',
+  title: 'Font to Logo Generator | Online Font Vector Generator',
   description:
-    'Convert Google Fonts to SVG paths with customizable styles, stroke effects, and fill options. Perfect for web design, logo creation, and vector graphics.',
+    'Convert Fonts to SVG paths with customizable styles, stroke effects, and fill options. Perfect for web design, logo creation, and vector graphics.',
   verification: {
     google: '5GH1kG7yjme4OwP09VID_uU9sDBuXFo3H3D9NXrWWa8',
     other: {
@@ -57,19 +58,19 @@ export const metadata: Metadata = {
   authors: [{ name: 'Qingying He' }],
   creator: 'Qingying He',
   openGraph: {
-    title: 'Google Font to SVG Path Converter',
+    title: 'Font to Logo Generator',
     description:
-      'Convert Google Fonts to SVG paths with customizable styles, stroke effects, and fill options. Perfect for web design, logo creation, laser cutting, and vector graphics. Free online tool with instant preview.',
-    url: 'https://text-to-svg.tool.tokyo/',
+      'Convert Fonts to Logo with customizable styles, stroke effects, and fill options. Perfect for web design, logo creation, laser cutting, and vector graphics. Free online tool with instant preview.',
+    url: 'https://font-logo-generator.hqy321.top/',
     siteName: 'Google Font to SVG Path',
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Google Font to SVG Path Converter',
+    title: 'Font to Logo Generator',
     description:
-      'Convert Google Fonts to SVG paths with customizable styles, stroke effects, and fill options. Perfect for web design, logo creation, laser cutting, and vector graphics. Free online tool with instant preview.',
+      'Convert Fonts to Logo with customizable styles, stroke effects, and fill options. Perfect for web design, logo creation, laser cutting, and vector graphics. Free online tool with instant preview.',
   },
 }
 
@@ -96,7 +97,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} relative flex min-h-screen flex-col text-gray-700 antialiased dark:text-gray-200`}
       >
         <ThemeProvider>
-          {children}
+          <AsyncErrorProvider>{children}</AsyncErrorProvider>
           <Toaster />
         </ThemeProvider>
       </body>
